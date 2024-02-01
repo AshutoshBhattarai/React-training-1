@@ -1,11 +1,14 @@
 // import { CountDownTimer } from './CountDownTimer';
 
-import WeatherAPI from './WeatherAPI';
+import UserProfile from './UserProfiles/UserProfile';
+
+// import WeatherAPI from './WeatherAPI';
 
 function App() {
   return (
     <div>
-      <WeatherAPI />
+      {/* <WeatherAPI /> */}
+      <UserProfile />
       {/* <CountDownTimer /> */}
     </div>
   );
