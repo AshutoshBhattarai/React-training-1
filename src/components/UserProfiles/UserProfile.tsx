@@ -13,21 +13,18 @@ const UserProfile = () => {
   const { data, error, loading } = useApi<UserProps>(url, {
     method: 'GET'
   });
-  console.log(loading);
-  if (loading) {
-    <p>Loading ......</p>;
-  }
+
   if (error) {
     return <p>Error : {error}</p>;
   }
-  console.log(data);
+
   return (
     <div className="m-5 p-5">
       <h1 className="text-center text-5xl text-white">User Profiles</h1>
       <div className="container m-3 rounded-3xl border-transparent bg-gray-700 p-3">
-        {data.map((user) => (
-          <UserCard key={user.id} userCardProps={user} />
-        ))}
+        {loading
+          ? 'Loading ........'
+          : data.map((user) => <UserCard key={user.id} userCardProps={user} />)}
       </div>
     </div>
   );
