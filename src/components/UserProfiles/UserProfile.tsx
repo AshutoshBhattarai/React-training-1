@@ -10,7 +10,7 @@ interface UserProps {
 }
 const url = 'https://reqres.in/api/users';
 const UserProfile = () => {
-  const { data, error, loading } = useApi<UserProps[]>(url, {
+  const { data, error, loading } = useApi<UserProps>(url, {
     method: 'GET'
   });
   console.log(loading);
@@ -26,7 +26,7 @@ const UserProfile = () => {
       <h1 className="text-center text-5xl text-white">User Profiles</h1>
       <div className="container m-3 rounded-3xl border-transparent bg-gray-700 p-3">
         {data.map((user) => (
-          <UserCard userCardProps={user} />
+          <UserCard key={user.id} userCardProps={user} />
         ))}
       </div>
     </div>
