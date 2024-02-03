@@ -1,15 +1,9 @@
-// import { CountDownTimer } from './CountDownTimer';
-
-import UserProfile from './UserProfiles/UserProfile';
-
-// import WeatherAPI from './WeatherAPI';
+import ActivityLog from './ActivityLog';
 
 function App() {
   return (
     <div>
-      {/* <WeatherAPI /> */}
-      <UserProfile />
-      {/* <CountDownTimer /> */}
+      <ActivityLog />
     </div>
   );
 }
