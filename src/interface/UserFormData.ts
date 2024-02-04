@@ -1,11 +1,7 @@
-import { z } from 'zod';
-
-const userFormData = z.object({
-  username: z.string(),
-  age: z.number().max(100).min(0),
-  contactNumber: z.bigint()
-});
-
-type UserFormData = z.infer<typeof userFormData>;
+interface UserFormData {
+  username: string;
+  age: number;
+  contactNumber: bigint;
+}
 
 export default UserFormData;

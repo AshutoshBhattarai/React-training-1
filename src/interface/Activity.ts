@@ -1,9 +1,5 @@
-import { z } from 'zod';
-
-const activity = z.object({
-  description: z.string(),
-  time: z.number()
-});
-
-type Activity = z.infer<typeof activity>;
+interface Activity {
+  description: string;
+  time: number;
+}
 export default Activity;
