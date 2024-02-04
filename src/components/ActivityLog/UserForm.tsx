@@ -8,11 +8,18 @@ const userFormSchema = z.object({
     message: 'Please enter your name'
   }),
 
-  age: z.number().min(1, {
-    message: 'People Below 1 cannot use(Please enter your correct age)'
-  }),
+  age: z.coerce // Coerce is to convert input generated string to a number
+    .number()
+    .min(1, {
+      message: 'Please enter your correct age'
+    })
+    .max(100, {
+      message: 'Please enter your correct age '
+    }),
 
-  contactNumber: z.number()
+  contactNumber: z.coerce
+    .string()
+    .regex(new RegExp(/^9\d{9}$/), 'Please Enter Valid Number') // Number must start with 9 and should contain exactly 10 digits
 });
 
 const UserForm = (props: { setUserData: (data: UserFormData) => void }) => {
@@ -21,7 +28,8 @@ const UserForm = (props: { setUserData: (data: UserFormData) => void }) => {
     handleSubmit,
     formState: { errors: formErrors }
   } = useForm<UserFormData>({
-    resolver: zodResolver(userFormSchema)
+    resolver: zodResolver(userFormSchema),
+    mode: 'onTouched' // shows validation after the input field are selected/touched
   });
 
   const displayErrorMessage = (message: string) => {
@@ -80,6 +88,8 @@ const UserForm = (props: { setUserData: (data: UserFormData) => void }) => {
         {formErrors.contactNumber &&
           displayErrorMessage(formErrors.contactNumber.message!)}
       </label>
+
+      <button type="submit">Submit</button>
     </form>
   );
 };
