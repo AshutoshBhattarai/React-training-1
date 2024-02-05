@@ -1,9 +1,11 @@
-import ActivityLog from './ActivityLog';
+import { Outlet } from 'react-router-dom';
+import Navbar from './common/Navbar';
 
 function App() {
   return (
     <div>
-      <ActivityLog />
+      <Navbar />
+      <Outlet />
     </div>
   );
 }
