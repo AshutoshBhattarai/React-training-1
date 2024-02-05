@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import UserFormData from 'interface/UserFormData';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -23,6 +24,7 @@ const userFormSchema = z.object({
 });
 
 const UserForm = (props: { setUserData: (data: UserFormData) => void }) => {
+  const [editing, setEditing] = useState<boolean>(true);
   const {
     register,
     handleSubmit,
@@ -42,7 +44,7 @@ const UserForm = (props: { setUserData: (data: UserFormData) => void }) => {
 
   const onFormSubmit: SubmitHandler<UserFormData> = (data: UserFormData) => {
     props.setUserData(data);
-    console.log(data);
+    setEditing(false);
   };
 
   return (
@@ -57,6 +59,7 @@ const UserForm = (props: { setUserData: (data: UserFormData) => void }) => {
         <input
           {...register('username', { required: true })}
           className="input input-bordered w-full max-w-xs"
+          disabled={!editing}
         />
 
         {formErrors.username &&
@@ -71,6 +74,7 @@ const UserForm = (props: { setUserData: (data: UserFormData) => void }) => {
           type="number"
           {...register('age', { required: true })}
           className="input input-bordered w-full max-w-xs"
+          disabled={!editing}
         />
 
         {formErrors.age && displayErrorMessage(formErrors.age.message!)}
@@ -84,10 +88,28 @@ const UserForm = (props: { setUserData: (data: UserFormData) => void }) => {
           type="number"
           {...register('contactNumber', { required: true })}
           className="input input-bordered w-full max-w-xs"
+          disabled={!editing}
         />
         {formErrors.contactNumber &&
           displayErrorMessage(formErrors.contactNumber.message!)}
       </label>
+      <div className="flex items-end">
+        {editing ? (
+          <button className="btn btn-primary" type="submit">
+            Save
+          </button>
+        ) : (
+          <button
+            className="btn btn-primary"
+            onClick={(e) => {
+              e.preventDefault();
+              setEditing(true);
+            }}
+          >
+            Edit
+          </button>
+        )}
+      </div>
     </form>
   );
 };

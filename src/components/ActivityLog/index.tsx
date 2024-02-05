@@ -34,9 +34,16 @@ const ActivityLog = () => {
             <p>No Activities Found</p>
           )}
         </div>
-
         <div>
-          <button className="btn btn-primary">Submit</button>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              console.log('UserData', userData);
+              console.log('Activities', activity);
+            }}
+          >
+            Submit
+          </button>
         </div>
       </div>
     </div>

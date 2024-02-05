@@ -72,7 +72,7 @@ const ActivityForm = (props: {
         {formErrors.time && displayErrorMessage(formErrors.time.message!)}
       </div>
 
-      <div className="flex items-end">
+      <div className="flex items-center p-6">
         <button className="btn btn-primary" type="submit">
           Add
         </button>
