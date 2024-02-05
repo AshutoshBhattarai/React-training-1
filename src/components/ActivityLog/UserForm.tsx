@@ -88,8 +88,6 @@ const UserForm = (props: { setUserData: (data: UserFormData) => void }) => {
         {formErrors.contactNumber &&
           displayErrorMessage(formErrors.contactNumber.message!)}
       </label>
-
-      <button type="submit">Submit</button>
     </form>
   );
 };
