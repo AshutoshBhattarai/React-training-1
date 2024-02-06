@@ -5,6 +5,9 @@ const WEATHER_API_URL =
   'https://api.open-meteo.com/v1/forecast?latitude=27.7017&longitude=85.3206&hourly=temperature_2m,apparent_temperature,rain,visibility,wind_speed_10m,wind_direction_10m&forecast_days=1';
 
 const WeatherAPI = () => {
+  //Using Loader from react router
+  // const weatherData = useLoaderData();
+  // const weather: WeatherData = weatherData.hourly;
   const [weather, setWeather] = useState<WeatherData>();
 
   useEffect(() => {
