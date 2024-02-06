@@ -1,24 +1,19 @@
-import WeatherData from 'interface/WeatherData';
-import { useEffect, useState } from 'react';
+import { fetchWeather, selectWeatherValue } from 'feature/weather/weatherSlice';
+import useAppDispatch from 'hooks/useAppDispatch';
+import useAppSelector from 'hooks/useAppSelector';
+import { useEffect } from 'react';
 
-const WEATHER_API_URL =
-  'https://api.open-meteo.com/v1/forecast?latitude=27.7017&longitude=85.3206&hourly=temperature_2m,apparent_temperature,rain,visibility,wind_speed_10m,wind_direction_10m&forecast_days=1';
+// const WEATHER_API_URL =
+//   'https://api.open-meteo.com/v1/forecast?latitude=27.7017&longitude=85.3206&hourly=temperature_2m,apparent_temperature,rain,visibility,wind_speed_10m,wind_direction_10m&forecast_days=1';
 
 const WeatherAPI = () => {
   //Using Loader from react router
   // const weatherData = useLoaderData();
   // const weather: WeatherData = weatherData.hourly;
-  const [weather, setWeather] = useState<WeatherData>();
-
+  const { weather } = useAppSelector(selectWeatherValue);
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(WEATHER_API_URL);
-
-      const data = await response.json();
-
-      setWeather(data.hourly);
-    }
-    fetchData();
+    dispatch(fetchWeather());
   }, []);
 
   return (
