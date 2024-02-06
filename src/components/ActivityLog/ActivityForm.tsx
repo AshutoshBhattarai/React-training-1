@@ -56,8 +56,8 @@ const ActivityForm = (props: {
           className="input input-bordered w-full max-w-xs"
         />
 
-        {formErrors.description &&
-          displayErrorMessage(formErrors.description.message!)}
+        {formErrors.description?.message &&
+          displayErrorMessage(formErrors.description.message)}
       </div>
 
       <div className="form-control w-full max-w-xs">

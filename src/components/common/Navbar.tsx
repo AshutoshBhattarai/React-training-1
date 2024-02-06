@@ -27,6 +27,9 @@ const Navbar = () => {
             ActivityLog
           </Link>
         </div>
+        <Link to={'demo'} className="text-md btn btn-ghost">
+          Demos
+        </Link>
       </nav>
     </div>
   );
